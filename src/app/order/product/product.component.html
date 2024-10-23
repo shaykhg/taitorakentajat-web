@@ -1,0 +1,168 @@
+<!--<div class="">-->
+<!--  <h4>{{pack.name}}</h4>-->
+<!--  <div *ngFor="let product of pack.products">-->
+
+<mat-card class="sort-card mat-elevation-z3" *ngIf="sortVisible">
+  <h3>Sort &amp; Filters</h3>
+  <div class="sort-section">
+    <p>By Price</p>
+    <div [ngClass]="filters.sort.price === 'ASC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('price', 'ASC')">
+      <span class="mdi mdi-arrow-up fs-18 m-r-2"></span><span class="no-padding-margin">Ascending</span>
+    </div>
+
+    <div [ngClass]="filters.sort.price === 'DESC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('price', 'DESC')">
+      <span class="mdi mdi-arrow-down fs-18 m-r-2"></span><span class="no-padding-margin">Descending</span>
+    </div>
+
+<!--    <div [ngClass]="filters.sort.price === 'NONE' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('price', 'NONE')">-->
+<!--      <span class="mdi mdi-minus-circle-outline fs-18 m-r-2"></span><span class="no-padding-margin">None</span>-->
+<!--    </div>-->
+  </div>
+
+  <div class="t-right" *ngIf="!moreSection">
+    <button mat-flat-button class="flat-btn" (click)="moreSection = true">
+      <span class="mdi mdi-chevron-down fs-18 m-r-2"></span>
+      <span>Show More Filters</span></button>
+  </div>
+
+  <div class="more-section" *ngIf="moreSection">
+    <div class="sort-section">
+      <p>By Name</p>
+      <div [ngClass]="filters.sort.name === 'ASC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('name', 'ASC')">
+        <span class="mdi mdi-arrow-up fs-18 m-r-2"></span><span class="no-padding-margin">Ascending</span>
+      </div>
+
+      <div [ngClass]="filters.sort.name === 'DESC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('name', 'DESC')">
+        <span class="mdi mdi-arrow-down fs-18 m-r-2"></span><span class="no-padding-margin">Descending</span>
+      </div>
+
+
+      <p class="m-t-18">By Discount</p>
+      <div [ngClass]="filters.sort.discount === 'ASC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('discount', 'ASC')">
+        <span class="mdi mdi-arrow-up fs-18 m-r-2"></span><span class="no-padding-margin">Ascending</span>
+      </div>
+
+      <div [ngClass]="filters.sort.discount === 'DESC' ? 'sort-chip-active' : 'sort-chip'" (click)="addSort('discount', 'DESC')">
+        <span class="mdi mdi-arrow-down fs-18 m-r-2"></span><span class="no-padding-margin">Descending</span>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div></div>
+    <div class="pak_div">
+      <div class="row filter_row" style="padding: 38px;">
+        <div class="col-4"><p>Brands:</p></div>
+        <div class="col-8">
+          <div class="grid-container pak_div mt-0 p-1">
+            <div class="" *ngFor="let brand of filters.brands">
+              <mat-checkbox (change)="addFilter()" [(ngModel)]="brand.checked">{{brand.name}}</mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="padding: 6px 38px;">
+        <div class="col-4"><p>Price:</p></div>
+        <div class="col-8">
+          <mat-slider
+            [displayWith]="formatLabel"
+            class="w-100"
+            max="100000"
+            min="100"
+            [tickInterval]="1000"
+            [(ngModel)]="filters.range"
+            thumbLabel
+            (change)="addFilter()"></mat-slider>
+          <div class="d-flex justify-content-between">
+            <span>10</span>
+            <span>1000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" *ngIf="moreSection">
+    <div class="col t-left">
+      <button mat-stroked-button (click)="clearFilters()" *ngIf="filters.applied" class="clear-btn">Clear Filters</button>
+    </div>
+
+    <div class="col t-right">
+      <button mat-flat-button class="flat-btn" (click)="moreSection = false">
+        <span class="mdi mdi-chevron-up fs-18 m-r-2"></span>
+        <span>Show Less</span>
+      </button>
+    </div>
+
+  </div>
+
+
+</mat-card>
+
+  <mat-card class="position-relative pack_div" *ngFor="let pack of packages" [class]="!(data.order.productHandle.assist || data.order.productHandle.buySelf) ? 'mat-elevation-z5' : 'mat-elevation-z1'" >
+
+    <div [class]="!(data.order.productHandle.assist || data.order.productHandle.buySelf) ? '' : 'overlayStyle'">
+
+    </div>
+    <div class="border_label" >
+      <div class="mb-0">{{pack.name}} <span class="discount" *ngIf="pack.oldPrice">-{{pack.discount}}%</span></div>
+    </div>
+    <div class="pak_div" >
+      <div>
+        <div class="d-flex justify-content-between price">
+          <div *ngIf="!pack.oldPrice"><span>{{pack.price}}&euro;</span></div>
+          <div *ngIf="pack.oldPrice">
+            <div style="color: green">{{pack.price.toFixed(2)}}&euro;</div>
+            <div class="old-price">{{pack.oldPrice.toFixed(2)}}&euro;</div>
+          </div>
+          <div>
+            <span class="me-3">Please Check to select</span>
+            <mat-checkbox (change)="getPackageValue($event, pack)"></mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="pack-details">
+        <p class="text-start">{{pack.desc}}</p>
+        <div class="d-flex pack_details"  *ngIf="!pack.expanded">
+          <div class="pack_img">
+            <img [src]="util.BASE_URL + pack.products[0].image.url" alt="" class="product-img">
+          </div>
+
+          <div class="pack_containt">
+            <h5>{{pack.products[0].name}}</h5>
+            <p>{{pack.products[0].desc}}</p>
+          </div>
+        </div>
+
+        <div *ngIf="pack.expanded" >
+          <div *ngFor="let product of pack.products" class="d-flex pack_details">
+           <div *ngIf="product.visible">
+             <div class="pack_img">
+               <img [src]="util.BASE_URL + product.image.url" alt="" class="product-img">
+             </div>
+             <div class="pack_containt">
+               <h5>{{product.name}}</h5>
+               <p>{{product.desc}}</p>
+             </div>
+           </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="text-center">
+        <button class="see_more" (click)=" pack.expanded = ! pack.expanded;">{{pack.expanded ? 'See Less' : 'See More'}}</button>
+      </div>
+    </div>
+  </mat-card>
+
+
+
+

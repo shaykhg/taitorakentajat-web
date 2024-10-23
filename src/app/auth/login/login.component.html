@@ -1,0 +1,38 @@
+
+  <div class="container-fluid background">
+    <div class="main-container">
+      <mat-card class="card">
+        <div>
+          <img src="assets/header_logo.png" alt="" routerLink="/" class="logo">
+        </div>
+        <mat-card-title class="heading">Login To Continue</mat-card-title>
+
+
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="login_form" novalidate>
+          <div class="t-left">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="identifier" matInput placeholder="user name">
+              <mat-error>Please enter valid email</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input formControlName="password" matInput placeholder="Password" type="password">
+            </mat-form-field>
+
+            <div class="m-b-12">
+              <a [routerLink]="['/auth/forgot-password']" class="primary-link">Forgot Password?</a>
+            </div>
+
+            <div class="m-t-16 t-center">
+              <button [disabled]="!loginForm.valid" class="login-btn m-t-16" color="primary" mat-raised-button type="submit">Sign In</button>
+              <p class="p-login">Not Registered? <a [routerLink]="['/auth/signup']" class="primary-link">Create an account</a>
+              </p>
+            </div>
+
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>

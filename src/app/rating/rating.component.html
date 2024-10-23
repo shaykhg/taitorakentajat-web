@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="container" *ngIf="booking">
+
+  <div *ngIf="booking.status === 0; else reviewFound ">
+    <mat-card class="rating-card mat-elevation-z3" *ngIf="!submit">
+      <h3>Rate Your Experience</h3>
+      <div class="subheading">Please rate your experience on the scale of 1 to 5 for your <b>Booking id# {{bookingId}}</b> Dated On <b>{{booking.date | date}}</b>. You review matters for us.</div>
+      <img [src]="'assets/images/'+ rate +'.png'" class="emoji">
+      <div *ngIf="booking" class="t-center">
+        <div class="t-center">
+          <bar-rating [(rate)]="rate" [theme]="'fontawesome'" [max]="5" class="dis-inline-block"></bar-rating>
+        </div>
+        <div>
+          <mat-form-field appearance="outline" class="w-50">
+            <mat-label>Your Review</mat-label>
+            <textarea matInput rows="5" cols="8" #review></textarea>
+          </mat-form-field>
+        </div>
+        <div class="submit-cont">
+          <button mat-raised-button class="review-btn" [disabled]="rate === 0" (click)="postReview(review.value)">Submit Review</button>
+        </div>
+      </div>
+
+      <!--    <div class="row p-l-16">-->
+      <!--      <div class="col-auto icon-bg">-->
+      <!--        <span class="mdi mdi-star-circle-outline fs-28"></span>-->
+      <!--      </div>-->
+      <!--      <div class="col align-self-center">-->
+      <!--        How was your experience with us?-->
+      <!--      </div>-->
+      <!--      &lt;!&ndash;            <div class="col-auto align-self-center">&ndash;&gt;-->
+      <!--      &lt;!&ndash;              <button mat-raised-button class="review-btn">Post Review</button>&ndash;&gt;-->
+      <!--      &lt;!&ndash;            </div>&ndash;&gt;-->
+      <!--    </div>-->
+      <!--    <hr>-->
+      <!--    <div>Rate your experience with us for your booking.</div>-->
+      <!--    <div>Booking Id - {{bookingId}} At {{booking.date | date}}</div>-->
+
+
+    </mat-card>
+
+  </div>
+  <ng-template #reviewFound>
+    <mat-card  class="rating-card mat-elevation-z3">
+
+      <img src="/assets/images/posted.png" alt="" class="emoji">
+      <h3 class="m-t-15"> You already posted your review</h3>
+      <div class="subheading">
+        We have already received your valuable feedback. for your <b>Booking id# {{bookingId}}</b> Dated On <b>{{booking.date | date}}</b>.
+        You can always create new booking through our website.
+      </div>
+      <div class="text-center">
+        <button mat-raised-button class="home-btn" routerLink="/">Home</button>
+      </div>
+    </mat-card>
+  </ng-template>
+
+  <mat-card  class="rating-card mat-elevation-z3" *ngIf="submit">
+
+    <img src="/assets/images/posted.png" alt="" class="emoji">
+    <h3 class="m-t-15">Thanks</h3>
+    <div class="subheading">
+      We have  received your valuable feedback. for your <b>Booking id# {{bookingId}}</b> Dated On <b>{{booking.date | date}}</b>.
+      You can always create new booking through our website.
+    </div>
+    <div class="text-center">
+      <button mat-raised-button class="home-btn" routerLink="/">Home</button>
+    </div>
+  </mat-card>
+
+</div>
+<app-footer></app-footer>

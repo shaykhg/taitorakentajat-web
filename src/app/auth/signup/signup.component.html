@@ -1,0 +1,45 @@
+<div class="background">
+<div class="container">
+  <div class="main-container">
+  <mat-card class="card">
+    <div class="text-center">
+      <img src="assets/header_logo.png" alt="" routerLink="/" class="logo">
+    </div>
+    <mat-card-title class="heading">Signup</mat-card-title>
+    <mat-card-content>
+
+      <form [formGroup]="signUp" (ngSubmit)="onSubmit()" novalidate>
+        <div class="example-container">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="user name" formControlName="email">
+            <mat-error>Please enter a valid email</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword">
+          </mat-form-field>
+
+
+          <button class="signup-btn" [disabled]="!signUp.valid" mat-raised-button color="primary">Sign Up</button>
+          <p class="p-signup">Already have an account <a class="signup" [routerLink]="['/auth/login']">Login here</a></p>
+        </div>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>
+</div>

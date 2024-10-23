@@ -1,0 +1,88 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.rating-card{
+  //margin: 0 auto;
+  text-align: center;
+  border-radius: 16px;
+  width: 75%;
+  padding: 32px 12px;
+  margin: 32px auto;
+
+}
+
+@media (max-width: 700px) {
+  .rating-card{
+    //margin: 0 auto;
+    text-align: center;
+    border-radius: 16px;
+    width: 100%;
+    padding: 32px 12px;
+    margin: 32px auto;
+
+  }
+}
+
+.m-container{
+  text-align: center;
+  width: 100%;
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+  background-color: #f0f0f0;
+}
+
+.icon-bg{
+  border-radius: 8px;
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #9d9d9d;
+}
+
+.review-btn{
+  border-radius: 12px;
+  background-color: #4caf50;
+  color: whitesmoke;
+  font-size: 18px;
+  padding: 2px 15px;
+}
+.home-btn{
+  border-radius: 12px;
+  background-color: #4caf50;
+  color: whitesmoke;
+  font-size: 18px;
+  padding: 2px 15px;
+}
+
+.one-col{
+  background-color: #1e6f5c;
+  height: 100vh;
+  text-align: center;
+}
+.one-img{
+  background-position-x: center;
+  background-position-y: bottom;
+  background: #1e6f5c url("../../assets/images/visual.svg") no-repeat;
+  min-height: 500px;
+}
+
+.two-col{
+  background: white;
+}
+
+.emoji{
+  width: 100px;
+}
+
+.subheading{
+  margin: 12px;
+  padding: 10px 12%
+}
+
+.submit-cont{
+  width: 50%;
+  margin: auto;
+  text-align: left;
+  text-transform: capitalize;
+}

@@ -1,0 +1,153 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  //font-family: 'Montserrat', sans-serif;
+  color: #59BD2F;
+  font-weight: 700;
+
+}
+
+.order_card {
+  border-radius: 15px;
+  padding: 24px;
+  margin-bottom: 28px;
+
+}
+
+.order_heading {
+  margin: 25px 0;
+  font-size: xx-large;
+}
+
+.order_card div p {
+  font-weight: 600;
+  word-break: break-all;
+
+}
+
+.order_id {
+  background-color: #e9f6e3;
+  border-radius: 15px;
+}
+
+.order_id p {
+  padding: 10px;
+}
+
+.total_price {
+  background-color: #56ab2f;
+  border-radius: 12px;
+  padding: 10px 50px;
+  color: #fff;
+  font-weight: bold !important;
+}
+
+.total_price p {
+  padding: 22px 55px;
+}
+
+.text_success {
+  color: #59BD2F;
+}
+
+.pak_div {
+  //border: 1px solid #0000005c;
+  border-radius: 12px;
+  margin-top: 15px;
+
+}
+
+.pack_div, .filter_div {
+  //border: 1px solid #0000005c;
+  padding: 19px 0 5px 26px;
+  margin-bottom: 50px;
+  border-radius: 12px;
+}
+
+.price {
+  margin: 10px 13px;
+}
+
+.pack_details {
+  padding: 10px 10px 0px 0px;
+
+  .pack_img {
+    padding: 12px 16px;
+  }
+}
+
+.pack_containt {
+  font-size: 13px;
+  padding: 17px 12px;
+
+
+  h5 {
+    font-size: 14px;
+  }
+
+
+}
+
+.see_more {
+  border: none;
+  outline: none;
+  background: none;
+  transition: 0.5s ease-in-out;
+}
+
+.see_more:hover {
+  color: #59BD2F;
+}
+
+.mat_tab_card {
+  width: 50%;
+  //margin: auto;
+}
+@media only screen and (max-width: 550px) {
+  .mat_tab_card {
+    width: 100%;
+  }
+  .mob_img{
+    display: block!important;
+    .pack_img{
+      text-align: center;
+    }
+  }
+  .order_detail{
+    display: block!important;
+    text-align: center;
+  }
+
+  .property-img-cont{
+    width: 100% !important;
+  }
+
+
+}
+
+.product-img {
+  max-height: 130px;
+  max-width: 130px;
+}
+.pack-details {
+  padding: 12px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.thumbnail{
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.property-img-cont{
+  width: 50%;
+}

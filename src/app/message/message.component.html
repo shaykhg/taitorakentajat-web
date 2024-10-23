@@ -1,0 +1,8 @@
+<div *ngIf="data">
+  <h3>{{data.title}}</h3>
+  <p>{{data.content}}</p>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close(1)">{{data.positive}}</button>
+    <button mat-button (click)="close(0)" cdkFocusInitial>{{data.negative}}</button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card *ngFor="let contactData of data.order.scheduleContactForm">
+    <div class="row p-4">
+      <div class="col-6">
+        <span>Phone:</span>
+      </div>
+      <div class="col-6">
+        <span>{{contactData.phone}}</span>
+      </div>
+    </div>
+
+    <div class="row p-4">
+      <div class="col-6">
+        <span>email:</span>
+      </div>
+      <div class="col-6">
+        <span>{{contactData.email.toLowerCase()}}</span>
+      </div>
+    </div>
+
+    <div class="row p-4">
+      <div class="col-6">
+        <span>Date:</span>
+      </div>
+      <div class="col-6">
+        <span>{{contactData.date}}</span>
+      </div>
+    </div>
+
+    <div class="row p-4">
+      <div class="col-6">
+        <span>Time:</span>
+      </div>
+      <div class="col-6">
+        <span>{{contactData.time}}</span>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button class="btn_btn btn btn-danger" mat-raised-button>Cancel</button>
+    </div>
+  </mat-card>
+</div>

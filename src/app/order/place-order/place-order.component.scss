@@ -1,0 +1,188 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  text-transform: capitalize !important;
+
+  h1, h2, h3, h4, h5, h6 {
+    //font-family: 'Montserrat', sans-serif;
+    color: #59bd2f;
+    font-weight: 700;
+
+  }
+
+
+  .info {
+    border: 1px solid #59BD2F;
+    border-radius: 50%;
+    padding: 0px 3px;
+    font-size: 7px;
+    font-weight: 600;
+    color: #59BD2F;
+    cursor: pointer;
+  }
+
+  .prop_check {
+
+  }
+
+
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    //margin-left: 30px;
+  }
+
+  .btn_up {
+    border: none;
+    color: gray;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 20px;
+    background: #80808047;
+  }
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .upload_div {
+
+    h3 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .order_place {
+    background-color: #59BD2F;
+    color: #ffffff;
+  }
+
+  .term_condition {
+    color: #59BD2F;
+  }
+
+  .notify {
+    background: #d5f1e2;
+    border-radius: 15px;
+    padding: 24px;
+    margin-bottom: 25px;
+  }
+
+  .emoji {
+    height: 30px;
+  }
+
+  .emoji_div {
+    padding: 4px 2px;
+  }
+
+  .order_header {
+
+    h3{
+      font-size: 20px;
+    }
+  }
+  .prop_card{
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+
+    h4{
+      font-size: 16px;
+    }
+  }
+
+
+}
+
+.btn_btn{
+  background-color: #59BD2F;
+  color: #fff;
+  padding: 7px 50px;
+  border-radius: 10px;
+}
+
+.product_img{
+  height: 55px;
+  width: 55px;
+}
+.error{
+  margin-top: -20px;
+}
+
+
+@media only screen and (max-width: 550px) {
+
+  .t_and_c{
+    font-size: 12px;
+  }
+
+  .notify{
+    flex-flow: wrap column;
+
+
+    .emoji{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+}
+
+.outline{
+  border: 1px solid rgba(24, 168, 75, 0.3);
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 12px;
+  align-self: center;
+
+}
+.outline:hover{
+  border: 1px solid #59BD2F;
+  margin: 10px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 12px;
+}
+
+.icon{
+  font-size: 32px;
+  color:  rgba(97, 95, 95, 0.3);
+}
+
+.detail-head{
+  font-size: 14px;
+  color: grey;
+  line-height: 1;
+}
+
+.detail{
+  margin-top: 10px;
+  color: #59BD2F;
+}
+
+.upload-cont{
+  display: flex;
+  justify-content: space-around;
+}
+
+.img-close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+

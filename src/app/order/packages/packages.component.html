@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <mat-card class="pack_div my-5">
+    <mat-radio-group>
+      <div class="prop_check mb-4">
+        <span>I will buy products myself <sub class="info" matTooltip="Info about the action"> &#8505;</sub></span>
+        <mat-slide-toggle (change)="disablePackage($event, 1)" [disabled]="disableBuyProduct"></mat-slide-toggle>
+      </div>
+
+      <div class="prop_check">
+        <span>Assist me to buy products <sub class="info" matTooltip="Info about the action"> &#8505;</sub></span>
+        <mat-slide-toggle (change)="disablePackage($event, 2)" [disabled]="disableProduct"></mat-slide-toggle>
+      </div>
+    </mat-radio-group>
+  </mat-card>
+
+
+  <div class="position-relative" *ngIf="disableProduct === disableBuyProduct">
+    <div class="my-4">
+      <mat-tab-group>
+        <mat-tab *ngFor="let data of dataShare.order.services" label="{{data.name}}">
+
+          <div>
+            <app-product [service]="data"></app-product>
+
+          </div>
+
+
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+</div>
+<div class="d-flex justify-content-around">
+  <div>
+    <button class="btn_btn" matStepperPrevious mat-raised-button>Back</button>
+  </div>
+
+  <div>
+    <button (click)="moveNextTab()" [disabled]="disableBtn()" class="btn_btn" mat-raised-button>Continue
+    </button>
+  </div>
+
+</div>
+

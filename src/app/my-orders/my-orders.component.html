@@ -1,0 +1,59 @@
+<div class="order-heading">My Orders</div>
+<hr>
+<div class="grid-container">
+  <mat-card class="m-3 cs-pointer order_card mat-elevation-z3" *ngFor="let order of orders" (click)="orderDetails(order)">
+    <div class="booking  mb-2" (click)="util.copyToClipBoard(order.id)">
+        <span class="pe-2">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+           <path fill="#767676"
+                 d="M10 7V9H9V15H10V17H6V15H7V9H6V7H10M16 7C17.11 7 18 7.9 18 9V15C18 16.11 17.11 17 16 17H12V7M16 9H14V15H16V9Z"/>
+          </svg>
+          </span>
+      <span class="fs-small">{{order.id}}</span>
+    </div>
+
+
+    <div class="booking row  mb-2">
+      <div class="col-6">
+        <span class="pe-2">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#767676"
+          d="M9,10H7V12H9V10M13,10H11V12H13V10M17,10H15V12H17V10M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z"/>
+</svg>
+        </span>
+        <span class="fs-small">{{order.disDate}}</span>
+      </div>
+
+      <div class="col-6">
+          <span class="pe-2">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#767676"
+                  d="M12 20C16.4 20 20 16.4 20 12S16.4 4 12 4 4 7.6 4 12 7.6 20 12 20M12 2C17.5 2 22 6.5 22 12S17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M17 11.5V13H11V7H12.5V11.5H17Z"/>
+            </svg>
+          </span>
+        <span>{{order.disTime}}</span>
+      </div>
+
+    </div>
+
+    <div class="booking  mb-2">
+        <span class="pe-2">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+          <path fill="#767676"
+                d="M16.06 13.09L21.69 18.68L18.37 21.96L12.78 16.37V15.45L15.14 13.09H16.06M16.97 10.56L16 9.6L11.21 14.4V16.37L5.58 22L2.3 18.68L7.89 13.09H9.86L10.64 12.31L6.8 8.46H5.5L2.69 5.62L5.31 3L8.11 5.8V7.11L12 10.95L14.66 8.29L13.7 7.28L15 5.97H12.34L11.69 5.32L15 2L15.66 2.66V5.32L16.97 4L20.25 7.28C21.34 8.38 21.34 10.17 20.25 11.26L18.28 9.25L16.97 10.56Z"/>
+          </svg>
+          </span>
+      <span class="fs-small">{{order.disServices}}</span>
+    </div>
+    <div>
+        <span class="pe-2">
+          <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+            <path fill="#767676"
+                  d="M7.07,11L7,12L7.07,13H17.35L16.5,15H7.67C8.8,17.36 11.21,19 14,19C16.23,19 18.22,17.96 19.5,16.33V19.12C18,20.3 16.07,21 14,21C10.08,21 6.75,18.5 5.5,15H2L3,13H5.05L5,12L5.05,11H2L3,9H5.5C6.75,5.5 10.08,3 14,3C16.5,3 18.8,4.04 20.43,5.71L19.57,7.75C18.29,6.08 16.27,5 14,5C11.21,5 8.8,6.64 7.67,9H19.04L18.19,11H7.07Z"/>
+          </svg>
+        </span>
+
+      <span class="fw-bold">{{order.total}}</span>
+    </div>
+  </mat-card>
+</div>

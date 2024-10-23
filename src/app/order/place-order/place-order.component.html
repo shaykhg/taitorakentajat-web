@@ -1,0 +1,193 @@
+<div class="container position-relative">
+<!--  <div class="order_header"><h3>Order Summary <sub class="info" matTooltip="Info about the action"> &#8505;</sub></h3>-->
+<!--  </div>-->
+
+  <div>
+    <mat-card class="prop_card">
+      <h4 class="mb-4">Property Details</h4>
+
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 align-self-center">
+          <div class="outline">
+            <div><span class="mdi mdi-home-city-outline icon"></span></div>
+            <div class="detail-head">Property type</div>
+            <div class="detail">{{data.order.customerDetails.propertyType}}</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 align-self-center">
+          <div class="outline">
+            <div><span class="mdi mdi-tape-measure  icon"></span></div>
+            <div class="detail-head">Property size</div>
+            <div class="detail">{{data.order.customerDetails.propertySize}}m<sup>2</sup></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 align-self-center">
+          <div class="outline">
+            <div><span class="mdi mdi-map-marker-radius-outline  icon"></span></div>
+            <div class="detail-head">Street & Building</div>
+            <div class="detail">{{data.order.customerDetails.street}}</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 align-self-center">
+          <div class="outline">
+            <div><span class="mdi mdi-alpha-p-circle-outline  icon"></span></div>
+            <div class="detail-head">Post Code</div>
+            <div class="detail">{{data.order.customerDetails.postCode}}</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-sm-6 align-self-center">
+          <div class="outline">
+            <div><span class="mdi mdi-city-variant-outline  icon"></span></div>
+            <div class="detail-head">City</div>
+            <div class="detail">{{data.order.customerDetails.city}}</div>
+          </div>
+        </div>
+
+      </div>
+
+<!--      <div class="row pb-3">-->
+<!--        <div class="col-6"><span class="mdi mdi-home-city-outline  fs-18 m-r-6"></span>Property Type:</div>-->
+<!--        <div class="col-6">{{data.order.customerDetails.propertyType}}</div>-->
+<!--      </div>-->
+
+<!--      <div class="row pb-3">-->
+<!--        <div class="col-6"><span class="mdi mdi-tape-measure  fs-18 m-r-6"></span> Property Size:</div>-->
+<!--        <div class="col-6">{{data.order.customerDetails.propertySize}}</div>-->
+<!--      </div>-->
+
+<!--      <div class="row pb-3">-->
+<!--        <div class="col-6"><span class="mdi mdi-map-marker-radius-outline  fs-18 m-r-6"></span> Street & Building:</div>-->
+<!--        <div class="col-6">{{data.order.customerDetails.street}}</div>-->
+<!--      </div>-->
+
+<!--      <div class="row pb-3">-->
+<!--        <div class="col-6"><span class="mdi mdi-alpha-p-circle-outline  fs-18 m-r-6"></span> Post Code:</div>-->
+<!--        <div class="col-6">{{data.order.customerDetails.postCode}}</div>-->
+<!--      </div>-->
+
+<!--      <div class="row pb-3">-->
+<!--        <div class="col-6"><span class="mdi mdi-city-variant-outline  fs-18 m-r-6"></span> City:</div>-->
+<!--        <div class="col-6">{{data.order.customerDetails.city}}</div>-->
+<!--      </div>-->
+    </mat-card>
+
+
+    <form [formGroup]="placeOrder">
+
+      <mat-card class="my-5 prop_card">
+        <div class="upload_div">
+          <h3>Add Photos</h3>
+          <p>Add photos of property</p>
+        </div>
+        <div class="upload-cont">
+
+          <div class="pos-relative" style="padding: 10px">
+            <span class="mdi mdi-close-circle-outline img-close"  *ngIf="imageUrl.one.length > 0" (click)="removeImage('one')"></span>
+            <div class="upload-btn-wrapper">
+            <button class="btn_up" *ngIf="imageUrl.one.length === 0">+</button>
+            <img [src]="imageUrl.one" *ngIf="imageUrl.one.length > 0" class="product_img">
+            <input (change)="onFileChange($event, 'one')" type="file">
+          </div>
+          </div>
+          <div class="pos-relative" style="padding: 10px">
+            <span class="mdi mdi-close-circle-outline img-close"   *ngIf="imageUrl.two.length > 0"(click)="removeImage('two')"></span>
+            <div class="upload-btn-wrapper">
+            <button class="btn_up" *ngIf="imageUrl.two.length === 0">+</button>
+            <img [src]="imageUrl.two" *ngIf="imageUrl.two.length > 0" class="product_img">
+            <input (change)="onFileChange($event, 'two')" type="file">
+          </div>
+          </div>
+          <div class="pos-relative" style="padding: 10px">
+            <span class="mdi mdi-close-circle-outline img-close"  *ngIf="imageUrl.three.length > 0" (click)="removeImage('three')"></span>
+            <div class="upload-btn-wrapper">
+            <button class="btn_up" *ngIf="imageUrl.three.length === 0">+</button>
+            <img [src]="imageUrl.three" *ngIf="imageUrl.three.length > 0" class="product_img">
+            <input (change)="onFileChange($event, 'three')" type="file">
+          </div>
+          </div>
+          <div class="pos-relative" style="padding: 10px">
+            <span class="mdi mdi-close-circle-outline img-close"  *ngIf="imageUrl.four.length > 0" (click)="removeImage('four')"></span>
+            <div class="upload-btn-wrapper">
+            <button class="btn_up" *ngIf="imageUrl.four.length === 0">+</button>
+            <img [src]="imageUrl.four" *ngIf="imageUrl.four.length > 0" class="product_img">
+            <input (change)="onFileChange($event, 'four')" type="file">
+          </div>
+          </div>
+
+
+
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill" class="w-100  pt-4">
+            <mat-label>Add Notes</mat-label>
+            <textarea matInput formControlName="notes" [maxlength]="250"></textarea>
+            <mat-error>This Field Can't Be Empty</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card>
+
+      <mat-card class="prop_card">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>First Name</mat-label>
+          <input formControlName="fname" matInput placeholder="First name here" type="text">
+          <mat-error>This Field Can't Be Empty</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Last Name</mat-label>
+          <input formControlName="lname" matInput placeholder="Last name here" type="text" [maxLength]="18">
+          <mat-error>This Field Can't Be Empty</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Your email address" type="email" [maxLength]="50">
+          <mat-error>Please Enter Valid Email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Phone</mat-label>
+          <input formControlName="phone" matInput placeholder="Phone number here" type="text" [maxLength]="10">
+        </mat-form-field>
+        <div *ngIf="f.phone.touched && f.phone.invalid" class="error">
+          <mat-error *ngIf="f.phone.errors.required">Mobile Number is required.</mat-error>
+          <mat-error *ngIf="f.phone.errors.pattern" >Please enter valid phone number</mat-error>
+        </div>
+
+        <div class="d-flex flex-column t_and_c my-5">
+          <mat-checkbox class="mb-3" formControlName="termAccept" (change)="getTermAccept($event)">
+            I accept the <span class="term_condition">terms and conditions</span>
+          </mat-checkbox>
+
+          <mat-checkbox formControlName="cancellation" (change)="getPolicy($event)">
+            Cancellation policy
+          </mat-checkbox>
+        </div>
+        <div class="d-flex notify">
+          <div class="me-4 emoji_div"><img alt="" class="emoji" src="assets/smiley.png">
+          </div>
+
+          <div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium nihil porro quaerat quod
+              sit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad beatae, deserunt in quam repudiandae?</p>
+          </div>
+        </div>
+        <div>
+          <button class="btn_btn" mat-raised-button (click)="imageUpload()" [disabled]="!policy || !termAndCondition || !placeOrder.valid" >Place Order</button>
+        </div>
+
+
+      </mat-card>
+    </form>
+  </div>
+
+
+
+</div>
+

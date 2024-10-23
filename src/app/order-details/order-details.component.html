@@ -1,0 +1,273 @@
+<app-header></app-header>
+
+<div class="container ">
+  <div class="order_heading">
+    <div>Your Order At A Glance</div>
+  </div>
+  <div *ngIf="order">
+    <mat-card  class="order_card mat-elevation-z2">
+      <div class="d-flex justify-content-between order_detail">
+        <div class="order_id mb-4"><p class="fw-normal mb-0"><span
+          class="text_success fw-bold">OrderId:</span> {{order.id}}</p></div>
+        <div class=""><p class="fw-normal total_price">&euro;{{order.total}}</p></div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <h5>Property Details</h5>
+          <div class="row">
+            <div class="col-6"><p>Property Type:</p></div>
+            <div class="col-6"><p>{{order.propertyType}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>Property Size:</p></div>
+            <div class="col-6"><p>{{order.propertySize}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>Building year:</p></div>
+            <div class="col-6"><p>{{order.buildingYear}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>Street & Building:</p></div>
+            <div class="col-6"><p>{{order.building}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>Post Code:</p></div>
+            <div class="col-6"><p>{{order.postcode}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>City:</p></div>
+            <div class="col-6"><p>{{order.city}}</p></div>
+          </div>
+
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <h5>Calendar</h5>
+
+          <div class="row" *ngIf="order.renovation">
+            <div class="col-6"><p>Renovation Date:</p></div>
+            <div class="col-6">
+              <p>{{util.getHumanDateTime(order.renovation)}}</p></div>
+          </div>
+          <div class="row">
+
+            <div class="col-6"><p>Inspection Date:</p></div>
+            <div class="col-6"><p>{{order.date ? util.getHumanDateTime(order.date) : '__/__/__ '}}</p></div>
+          </div>
+
+          <div class="row" *ngIf="order.start">
+            <div class="col-6">
+              <div><p>Start Date: </p></div>
+            </div>
+            <div class="col-6">
+              <div class="m-l-10"><p>{{util.getIndianDate(order.start)}}</p></div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="order.end">
+            <div class="col-6">
+              <div><p>End Date: </p></div>
+            </div>
+            <div class="col-6">
+
+              <div class="m-l-10"><p>{{util.getIndianDate(order.end)}}</p></div>
+            </div>
+          </div>
+
+
+
+          <div class="row" *ngIf="order.assist">
+            <div class="col-6"><p>Need Buying Assistance:</p></div>
+            <div class="col-6"><p>{{order.assist ? 'Yes' : 'No'}}</p></div>
+          </div>
+          <div class="row" *ngIf="order.buySelf">
+            <div class="col-6"><p>Wil buy products self:</p></div>
+            <div class="col-6"><p>{{order.buySelf ? 'Yes' : 'No'}}</p></div>
+          </div>
+          <div class="row" >
+            <div class="col-6"><p>Order status</p></div>
+            <div class="col-6"><p>{{order.status}}</p></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12">
+          <h5>Customer Details</h5>
+          <div class="row">
+            <div class="col-6"><p>Email:</p></div>
+            <div class="col-6"><p>{{order.email}}</p></div>
+          </div>
+
+          <div class="row">
+            <div class="col-6"><p>Phone:</p></div>
+            <div class="col-6"><p>{{order.phone}}</p></div>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-card>
+
+    <mat-card class="order_card mat-elevation-z2" *ngIf="order.images.length > 0">
+      <h6>Property Images</h6>
+      <hr>
+      <div class="row property-img-cont">
+        <div class="col-3 self-center" *ngFor="let image of order.images">
+          <img [src]="util.BASE_URL + image.url" class="thumbnail" (click)="openDialog(image.url)">
+        </div>
+      </div>
+
+    </mat-card>
+
+    <mat-card class="mat-elevation-z3 booking-card" *ngIf="order.status === 'COMPLETED'">
+      <h5><b>Completion Details</b></h5>
+      <div *ngIf="order.finalPhotos.length > 0; else noFinalPic">
+        <hr>
+
+        <h6 class="heading">Final Photos</h6>
+        <div class="row property-img-cont">
+          <div class="col-3 self-center" *ngFor="let image of order.finalPhotos" (click)="order(util.BASE_URL + image.url)">
+            <img [src]="util.BASE_URL + image.url" class="thumbnail" (click)="openDialog(image.url)">
+          </div>
+        </div>
+
+      </div>
+      <ng-template #noFinalPic>
+        <div class="mat-subheading-1">No final photos uploaded by Company</div>
+      </ng-template>
+
+      <div *ngIf="order.companyNotes">
+        <hr>
+        <h6>Company Notes</h6>
+
+        <div class="dis-flex">
+          <span class="mdi mdi-arrow-right-bold brand-color fs-28 self-center"></span><span class="m-l-16 self-center">{{order.companyNotes}}</span>
+        </div>
+      </div>
+
+    </mat-card>
+
+    <div>
+      <mat-tab-group >
+        <mat-tab *ngFor="let service of order.services" label="{{service.name}}">
+          <div class="mat_tab_card">
+            <mat-card *ngIf="service.viewType === 6" class="pack_div">
+              <h5>Service Details</h5>
+              <hr>
+              <div class="row">
+                <div class="col">Area:</div>
+                <div class="col">{{service.area}}m<sup>2</sup></div>
+              </div>
+              <div class="row">
+                <div class="col">New Material:</div>
+                <div class="col">{{service['New Material']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Old Material:</div>
+                <div class="col">{{service['Old Material']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Price:</div>
+                <div class="col">{{service.price}}</div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="mat_tab_card">
+            <mat-card *ngIf="service.viewType === 7" class="pack_div">
+              <h5>Service Details</h5>
+              <hr>
+              <div class="row">
+                <div class="col">Area:</div>
+                <div class="col">{{service.area}}m<sup>2</sup></div>
+              </div>
+              <div class="row">
+                <div class="col">Change Color:</div>
+                <div class="col">{{service['Change Color']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Groundwork:</div>
+                <div class="col">{{service['Groundwork']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Material:</div>
+                <div class="col">{{service['Painting Area']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Rainwater Downpipes:</div>
+                <div class="col">{{service['Rainwater Downpipes']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Rainwater Renewal:</div>
+                <div class="col">{{service['Rainwater Renewal']}}</div>
+              </div>
+              <div class="row">
+                <div class="col">Ridge Height:</div>
+                <div class="col">{{service['Ridge Height']}}m</div>
+              </div>
+              <div class="row">
+                <div class="col">Wooden Parts Change:</div>
+                <div class="col">{{service['Wooden Parts Change'] ? 'Yes' : 'No'}}</div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="mat_tab_card" *ngFor="let pack of service.packages">
+            <mat-card class="position-relative pack_div">
+              <div class="pak_div" >
+                <div class="row">
+                  <div class="col">
+                    <p>{{pack.name}}</p>
+                  </div>
+
+                  <div class="col">
+                    <p class="t-right p-r-16"><b>&euro;{{pack.price}}</b></p>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="pack-details">
+                  <p class="text-start">{{pack.desc}}</p>
+                  <div class="d-flex pack_details"  *ngIf="!pack.expanded">
+                    <div class="pack_img">
+                      <img [src]="util.BASE_URL + pack.products[0].image.url" alt="" class="product-img">
+                    </div>
+
+                    <div class="pack_containt">
+                      <h5>{{pack.products[0].name}}</h5>
+                      <p>{{pack.products[0].desc}}</p>
+                    </div>
+                  </div>
+
+                  <div *ngIf="pack.expanded" >
+                    <div *ngFor="let product of pack.products" class="d-flex pack_details">
+                      <div class="pack_img">
+                        <img [src]="util.BASE_URL + product.image.url" alt="" class="product-img">
+                      </div>
+                      <div class="pack_containt">
+                        <h5>{{product.name}}</h5>
+                        <p>{{product.desc}}</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="text-center">
+                  <button class="see_more" (click)=" pack.expanded = ! pack.expanded;">{{pack.expanded ? 'See Less' : 'See More'}}</button>
+                </div>
+              </div>
+
+            </mat-card>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

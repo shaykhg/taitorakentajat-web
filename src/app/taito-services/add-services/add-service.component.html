@@ -1,0 +1,209 @@
+<form [formGroup]="customerDetailForm" class="mt-4">
+  <div class="container mt-4">
+    <mat-card class="prop_card">
+      <div>
+        <h5>Describe Your Property <sub class="info" matTooltip="Info about the action"> &#8505;</sub></h5>
+        <p class="fw-medium">Property Type</p>
+      </div>
+      <section>
+        <mat-radio-group formControlName="property">
+          <div class="prop_check mb-4">
+            <span>Omakoti</span>
+            <mat-radio-button (change)="propertyType($event)" class="example-margin" value="Omakoti"></mat-radio-button>
+          </div>
+
+          <div class="prop_check mb-4">
+            <span>Kerrostalo</span>
+            <mat-radio-button (change)="propertyType($event)" class="example-margin"
+                              value="Kerrostalo"></mat-radio-button>
+          </div>
+
+          <div class="prop_check mb-4">
+            <span>Rivitalo</span>
+            <mat-radio-button (change)="propertyType($event)" class="example-margin"
+                              value="Rivitalo"></mat-radio-button>
+          </div>
+
+          <div class="prop_check">
+            <span>Luhtitalo</span>
+            <mat-radio-button (change)="propertyType($event)" class="example-margin"
+                              value="Luhtitalo"></mat-radio-button>
+          </div>
+        </mat-radio-group>
+      </section>
+
+      <div class="my-4">
+        <p class="fw-medium mb-0">Property Size (meter sq) <sub class="info" matTooltip="Info about the action">
+          &#8505;</sub></p>
+        <p class="m-t-12" *ngIf="size">{{size}}m<sup>2</sup></p>
+        <mat-slider
+          (change)="getMeterSq($event)"
+          [displayWith]="formatLabel"
+          [(ngModel)]="size"
+          class="w-100"
+          formControlName="size"
+          max="500"
+          min="0"
+          thumbLabel
+          tickInterval="10"></mat-slider>
+        <div class="d-flex justify-content-between">
+          <span>0</span>
+          <span>500</span>
+        </div>
+
+        <p class="err-text" *ngIf="customerDetailForm.dirty && (!customerDetailForm.get('size').value || customerDetailForm.get('size').value === 0)">
+          Please select property size</p>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="prop_label">Street & Building</mat-label>
+            <input formControlName="street" matInput placeholder="Mention your street & building" type="text"
+                   [maxLength]="50">
+            <mat-error>This Field Can't Be Empty</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="prop_label">Building Year</mat-label>
+            <input formControlName="building" matInput placeholder="1994" type="text" maxlength="4">
+            <mat-error>This Field Can't Be Empty</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="prop_label">Post Code</mat-label>
+            <input formControlName="postCode" matInput placeholder="Your Post Code" type="text"
+                   (input)="onSearchChange($event.target.value)" (keypress)="util.isNumberKey($event)" [maxlength]="5">
+            <mat-error>This field cannot be empty</mat-error>
+          </mat-form-field>
+          <div *ngIf="postcodeError" class="err-text">Please enter a valid postcode</div>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label class="prop_label">City</mat-label>
+            <input formControlName="city" readonly matInput placeholder="Your city" type="text">
+            <mat-error>This Field Can't Be Empty</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-card>
+  </div>
+  <!--                 property ends        -->
+
+<!--  <div class="container mt-4">-->
+<!--    <mat-card class="prop_card">-->
+<!--      <div>-->
+<!--        <h5 class="text-capitalize">Details about service provider <sub class="info"-->
+<!--                                                                        matTooltip="Info about the action">-->
+<!--          &#8505;</sub></h5>-->
+<!--        <p class="fw-medium">Company Size</p>-->
+<!--      </div>-->
+
+<!--      <section class="example-section">-->
+<!--        <mat-radio-group formControlName="companySize">-->
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Self- employed</span>-->
+<!--            <mat-radio-button (change)="companySize($event)" value="Self-employed"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Small (3-5 Person)</span>-->
+<!--            <mat-radio-button (change)="companySize($event)" value="Small(3-5 Person)"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Medium (5-20 Person)</span>-->
+<!--            <mat-radio-button (change)="companySize($event)" value="Medium(5-20 Person)"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Large (20+)</span>-->
+<!--            <mat-radio-button (change)="companySize($event)" value="Large(20+)"></mat-radio-button>-->
+<!--          </div>-->
+<!--        </mat-radio-group>-->
+<!--      </section>-->
+<!--      <p class="fw-medium">Experience level</p>-->
+
+<!--      <section class="example-section">-->
+<!--        <mat-radio-group formControlName="experienceLevel">-->
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Minimum</span>-->
+<!--            <mat-radio-button (change)="addExperienceLevel($event)" value="Minimum"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>Medium</span>-->
+<!--            <mat-radio-button (change)="addExperienceLevel($event)" value="Medium"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--          <div class="prop_check mb-4">-->
+<!--            <span>High</span>-->
+<!--            <mat-radio-button (change)="addExperienceLevel($event)" value="High"></mat-radio-button>-->
+<!--          </div>-->
+
+<!--        </mat-radio-group>-->
+<!--      </section>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+</form>
+<!--                Service Provider Ends         -->
+
+<app-service-added></app-service-added>
+
+
+<div *ngIf="dataShare.addFormVisible || dataShare.order.services.length === 0" class="container mt-4">
+  <mat-card class="prop_card">
+    <div>
+      <h5 class="text-capitalize">Select Service <sub class="info" matTooltip="Info about the action"> &#8505;</sub>
+      </h5>
+      <p class="fw-medium">Services</p>
+    </div>
+    <mat-form-field appearance="fill" class="w-100">
+      <mat-label>Select Service</mat-label>
+      <mat-select (selectionChange)="changeValue($event)" [value]="selectedService">
+        <mat-option *ngFor="let service of dataShare.apiService" [value]="service">
+          <div class="row">
+            <div class="col-12 text-start">
+              <span>{{service.name}}</span>
+            </div>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="serviceExists" class="overwrite">
+      Selected service already exists in order, adding this service again will overwrite the previous information.
+    </div>
+
+
+    <div *ngIf="dataShare.serviceValue">
+      <app-floor-repair *ngIf="dataShare.serviceValue.viewType === 6"></app-floor-repair>
+      <app-painting *ngIf="dataShare.serviceValue.viewType === 7"></app-painting>
+    </div>
+  </mat-card>
+
+
+</div>
+
+
+
+<div class="my-4 text-center">
+  <button class="btn_btn" color="primary" mat-raised-button type="submit"
+          [disabled]="!customerDetailForm.valid || dataShare.order.services.length === 0" (click)="moveNext()">Continue
+    to packages
+  </button>
+</div>
+
+
+

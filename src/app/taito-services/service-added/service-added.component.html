@@ -1,0 +1,41 @@
+<div *ngIf="data.order.services.length > 0" class="px-4">
+  <mat-card class="prop_card mt-4">
+
+    <div>
+      <h5 class="text-capitalize">Added Service <sub matTooltip="Info about the action" class="info"> &#8505;</sub>
+      </h5>
+      <p class="fw-medium">Services</p>
+    </div>
+
+
+<div *ngFor="let service of data.order.services">
+  <div *ngIf="service.viewType >= 6" class="mt-4">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="fw-bold">
+          {{service.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="row pt-4" *ngFor="let value of service.arr ? service.arr : getServiceProps(service)">
+        <div class="col-6">
+          <span>{{value.key}}</span>
+        </div>
+        <div class="col-6">
+          <span *ngIf="value.key.toLowerCase() === 'price'"><b>{{value.value.toFixed(2)}}&euro;</b></span>
+          <span *ngIf="value.key.toLowerCase() !== 'price'"><b>{{value.value}}</b></span>
+          <span *ngIf="value.key.toLowerCase().includes('size')"><b>m<sup>2</sup></b></span>
+        </div>
+      </div>
+
+      <div class="t-right">
+        <button mat-stroked-button class="remove-btn" (click)="removeService(service)">Remove</button>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
+    <div class="mt-5">
+      <button mat-raised-button (click)="data.addFormVisible = true" class="add_more_btn">Add More</button>
+    </div>
+  </mat-card>
+</div>

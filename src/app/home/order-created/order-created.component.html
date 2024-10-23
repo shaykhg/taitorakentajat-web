@@ -1,0 +1,382 @@
+<!--    <mat-accordion *ngIf="service.id === '1'" class="mt-4">-->
+<!--      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"-->
+<!--                           *ngFor="let service of data.order.services">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <mat-panel-title>-->
+<!--            {{service.name}}-->
+<!--          </mat-panel-title>-->
+
+<!--        </mat-expansion-panel-header>-->
+<!--        <div class="row pt-4">-->
+<!--          <div class="col-lg-6">-->
+<!--            <span>Groundwork:</span>-->
+<!--          </div>-->
+
+<!--          <div class="col-lg-6">-->
+<!--            <span>{{service.groundWork}}</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="row pt-4">-->
+<!--          <div class="col-lg-6">-->
+<!--            <span>Paint:</span>-->
+<!--          </div>-->
+<!--          <div class="col-lg-6">-->
+<!--            <span>{{service.paint}}</span>-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+
+<!--        <div class="row pt-4">-->
+
+<!--          <div class="col-lg-6">-->
+<!--            <span>Meter Square:</span>-->
+<!--          </div>-->
+
+<!--          <div class="col-lg-6">-->
+<!--            <span>{{service.sqm}}</span>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </mat-expansion-panel>-->
+<!--    </mat-accordion>-->
+
+<div *ngFor="let service of data.order.services">
+  <div *ngIf="service.viewType === 1" class="mt-4">
+    <mat-expansion-panel (closed)="panelOpenState = false" (opened)="panelOpenState = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{service.name}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div *ngIf="data.order.packages.length > 0" class="row">
+        <div class="col-4">
+          <p>Your Packages:</p>
+        </div>
+
+        <div *ngFor="let pack of data.order.packages" class="col-8">
+          <p>{{pack.name}}</p>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="data.addSlot">
+        <div class="col-5">
+          <p>Inception Date & Time:</p>
+        </div>
+
+        <div class="col-7">
+          <p>{{util.getHumanDateTime(data.addSlot)}}</p>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">Price:</div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-6">{{service.price}} €</div>
+      </div>
+
+      <div class="row pt-4">
+        <!--        {{service | json}}-->
+        <div class="col-4">
+          <span>Roof Material:</span>
+        </div>
+        <div class="col-8 text-center">
+          <span>{{service.roofMaterial}}</span>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p class="fw-bold" style="font-size: 14px;">Your Packages:</p>
+          </div>
+
+          <div *ngFor="let pack of data.order.packages" class="col-4">
+            <p>{{pack.name}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <p class="fw-bold" style="font-size: 14px;">Inception
+              Date & Time:</p>
+          </div>
+
+          <div class="col-4">
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Meter Square:</span>
+        </div>
+
+        <div class="col-6 text-center">
+          <span>{{service.sqm}} M<sup>2</sup></span>
+        </div>
+
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Roof Incension:</span>
+        </div>
+
+        <div class="col-6 text-center">
+          <span>{{service.roofIncension}}</span>
+        </div>
+
+
+      </div>
+
+      <div class="text-start mt-4">
+        <button mat-stroked-button class="delete_btn" (click)="removeService()"> Remove</button>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+
+  <div *ngIf="service.viewType === 2" class="mt-4">
+
+
+    <mat-expansion-panel (closed)="panelOpenState = false" (opened)="panelOpenState = true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{service.name}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div class="row">
+        <div class="col-4">
+          <p>Your Packages:</p>
+        </div>
+
+        <div *ngFor="let pack of data.order.packages" class="col-8">
+          <p>{{pack.name}}</p>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="data.addSlot">
+        <div class="col-5">
+          <p>Inception Date & Time:</p>
+        </div>
+
+        <div class="col-7">
+          <p>{{util.getHumanDateTime(data.addSlot)}}</p>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">Price:</div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-6">{{service.price}} €</div>
+      </div>
+
+
+
+      <div class="row pt-4">
+        <div class="col-4">
+          <span>Water Points:</span>
+        </div>
+        <div class="col-8">
+          <span>{{service.waterPoint}}</span>
+        </div>
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-4">
+          <span>Meter Squar:</span>
+        </div>
+        <div class="col-8">
+          <span>{{service.sqm}}M<sup>2</sup></span>
+        </div>
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <span>{{service.demolition}}</span>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <span>{{service.refurbishment}}</span>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <span>{{service.waterproofing}}</span>
+        </div>
+      </div>
+
+      <div class="text-start mt-4">
+        <button mat-stroked-button class="delete_btn" (click)="removeService()"> Remove</button>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+  <div *ngIf="service.viewType === 3" class="mt-4">
+    <mat-expansion-panel (closed)="panelOpenState = false" (opened)="panelOpenState = true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{service.name}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div class="row">
+        <div class="col-4">
+          <p>Your Packages:</p>
+        </div>
+
+        <div *ngFor="let pack of data.order.packages" class="col-8">
+          <p>{{pack.name}}</p>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="data.addSlot">
+        <div class="col-5">
+          <p>Inception Date & Time:</p>
+        </div>
+
+        <div class="col-7">
+          <p>{{util.getHumanDateTime(data.addSlot)}}</p>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">Price:</div>
+        <div class="col-6">{{service.price}}€</div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Sauna Renovation:</span>
+        </div>
+        <div class="col-6">
+          <span>{{service.saunaRenovation}}</span>
+        </div>
+
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <span>{{service.benches}}</span>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12">
+          <span>{{service.stove}}</span>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="co-12">
+          <span>{{service.door}}</span>
+        </div>
+      </div>
+
+      <div class="text-start mt-4">
+        <button mat-stroked-button class="delete_btn" (click)="removeService()"> Remove</button>
+      </div>
+
+    </mat-expansion-panel>
+  </div>
+
+  <div *ngIf="service.viewType === 4" class="mt-4">
+    <mat-expansion-panel (closed)="panelOpenState = false" (opened)="panelOpenState = true"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{service.name}}
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+      <div class="row">
+        <div class="col-4">
+          <p>Your Packages:</p>
+        </div>
+
+        <div *ngFor="let pack of data.order.packages" class="col-8">
+          <p>{{pack.name}}</p>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="data.addSlot">
+        <div class="col-5">
+          <p>Inception Date & Time:</p>
+        </div>
+
+        <div class="col-7">
+          <p>{{util.getHumanDateTime(data.addSlot)}}</p>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Price:</span>
+        </div>
+
+        <div class="col-6">
+          <span>{{service.price}}€</span>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Base Job:</span>
+        </div>
+        <div class="col-6">
+          <span>{{service.baseJob}}</span>
+        </div>
+
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Paint:</span>
+        </div>
+
+        <div class="col-6">
+          <span>{{service.paint}}</span>
+        </div>
+
+      </div>
+
+
+      <div class="row pt-4">
+        <div class="col-6">
+          <span>Meter Squar:</span>
+        </div>
+
+        <div class="col-6">
+          <span>{{service.sqm}}M<sup>2</sup></span>
+        </div>
+
+      </div>
+
+      <div class="text-start mt-4">
+        <button mat-stroked-button class="delete_btn" (click)="removeService()"> Remove</button>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+</div>
+

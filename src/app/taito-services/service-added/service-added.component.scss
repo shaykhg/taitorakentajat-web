@@ -1,0 +1,53 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: capitalize!important;
+}
+
+  h1,h2,h3,h4,h5,h6{
+    //font-family: 'Montserrat', sans-serif;
+    color: #59BD2F;
+    font-weight: 700;
+
+  }
+
+  .prop_card{
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  .info{
+    border: 1px solid #59BD2F;
+    border-radius: 50%;
+    padding: 0 3px;
+    font-size: 7px;
+    font-weight: 600;
+    color: #59BD2F;
+    cursor: pointer;
+  }
+
+  .add_more_btn{
+    background-color: #59BD2F;
+    color: #ffffff;
+  }
+
+  .delete_btn{
+    background-color: #d11a2a;
+    color: #ffffff;
+  }
+
+.btn_btn{
+  background-color: #59BD2F;
+  color: #fff;
+  padding: 7px 50px;
+  border-radius: 10px;
+}
+
+
+.remove-btn
+{
+  border: 1px solid #d60b0b;
+  margin-top: 4px;
+  color: #d60b0b;
+  border-radius: 12px;
+}
+

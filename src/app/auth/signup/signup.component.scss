@@ -1,0 +1,96 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.container {
+
+}
+
+
+.mat-form-field {
+  width: 100%;
+
+}
+
+.main-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signup {
+  color: #59BD2F;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.heading {
+  color: #59BD2F;
+  padding: 10px;
+}
+
+.card {
+  border-radius: 20px;
+  width: 35%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.background {
+  background: #1d976c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #1d976c, #93f9b9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1d976c, #93f9b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+}
+
+.signup-btn {
+  width: 100%;
+  background: #59BD2F;
+}
+
+.p-signup {
+  margin-top: 10px;
+}
+
+.btn_btn{
+  background-color: #59BD2F;
+  color: #fff;
+  padding: 7px 50px;
+  border-radius: 10px;
+}
+
+.logo{
+  cursor: pointer;
+  outline: none;
+}
+
+
+@media only screen and (max-width: 750px) {
+  .card{
+    width: 55%;
+  }
+
+}
+
+
+@media only screen and (max-width:650px){
+  .card{
+    width: 100%;
+  }
+}
